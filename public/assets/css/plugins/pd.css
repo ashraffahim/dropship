@@ -1,0 +1,24 @@
+.sptlt img, .glri img {
+	object-fit: cover;
+	object-position: center;
+	max-height: 300px;
+	max-width: 100%;
+	margin: 0 auto;
+}
+
+.sptlt {
+	display: flex;
+	justify-content: center;
+	height: 300px;
+	width: 100%;
+}
+
+.glr {
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+}
+
+.glri {
+	margin: 2.5px 5px;
+}

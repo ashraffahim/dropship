@@ -1,0 +1,5 @@
+# Remove the question mark from the request but maintain the query string
+RewriteEngine On
+RewriteBase /data
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php?$1 [L,QSA]

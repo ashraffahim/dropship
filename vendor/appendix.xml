@@ -1,0 +1,12 @@
+<xml>
+	<t>hfpc</t>
+	<d>home feed product cell</d>
+	<t>sr[0-5]</t>
+	<d>star rating</d>
+	<t>sptlt</t>
+	<d>Spotlight</d>
+	<t>glr</t>
+	<d>Gallery</d>
+	<t>glri</t>
+	<d>Gallery item</d>
+</xml>

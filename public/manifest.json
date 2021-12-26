@@ -1,0 +1,16 @@
+{
+    "short_name": "Menu",
+    "name": "Contactless Restaurant Menu",
+    "icons": [
+        {
+            "src": "assets/img/a.jpg",
+            "type": "image/jpeg",
+            "sizes": "300x300"
+        }
+    ],
+    "start_url": "/",
+    "background_color": "#3367D6",
+    "display": "standalone",
+    "scope": "/",
+    "theme_color": "#3367D6"
+}
