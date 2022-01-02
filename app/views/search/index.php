@@ -1,5 +1,8 @@
 <div class="container-fluid">
 	<div class="row">
+		<?php
+		if ($data['data']) {
+		?>
 		<div class="col-md-10 offset-md-2">
 			<div class="row">
 				<?php
@@ -28,5 +31,15 @@
 				?>
 			</div>
 		</div>
+		<?php
+		} else {
+		?>
+		<div class="col-12 text-center">
+			<img src="/assets/img/no-data.png" alt="No Data" height="400">
+			<h1 class="display-4">We're sorry to let you down!</h1>
+		</div>
+		<?php
+		}
+		?>
 	</div>
 </div>

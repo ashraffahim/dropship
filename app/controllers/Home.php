@@ -16,6 +16,10 @@ class Home extends Controller {
 	public function index()	{
 		$f = $this->h->feed();
 		$this->view('home'.DS.'feed', [
+			'title' => '',
+			'description' => '',
+			'canonical' => DOMAIN,
+			'schema' => '',
 			'data' => $f
 		]);
 	}
