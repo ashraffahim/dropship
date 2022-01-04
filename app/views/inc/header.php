@@ -20,7 +20,7 @@
 			<div class="container">
 				<div class="col-md-2">
 					<a href="/">
-						<img src="/assets/img/agit-logo.png" alt="Al Ghaim IT" height="34">
+						<img src="/assets/img/agit-logo-c.png" alt="Al Ghaim IT" height="34">
 					</a>
 				</div>
 				<div class="col-md-6">
