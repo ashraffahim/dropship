@@ -34,6 +34,16 @@ class Controller {
 
 	}
 
+	public function error($err) {
+		$this->view('error/' . $err, [
+			'title' => '',
+			'description' => '',
+			'canonical' => '',
+			'meta' => '<meta name="robots" content="noindex">',
+			'schema' => ''
+		]);
+	}
+
 	public function status($data = [], $ajax = false) {
 
 		if (isset($_SERVER['HTTP_SEC_FETCH_MODE']) && $_SERVER['HTTP_SEC_FETCH_MODE'] == 'cors') {

@@ -19,6 +19,7 @@ class Home extends Controller {
 			'title' => '',
 			'description' => '',
 			'canonical' => DOMAIN,
+			'meta' => '',
 			'schema' => '',
 			'data' => $f
 		]);

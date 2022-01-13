@@ -2,6 +2,15 @@
 Custom css
 */
 
+@font-face {
+	font-family: "Championship";
+	src: url("../font/Championship.ttf") format("ttf");
+}
+
+nav {
+	z-index: 999;
+}
+
 .c-grab {
 	cursor: grab;
 }
@@ -83,7 +92,84 @@ tr:not(:hover) .tr-h-v {
 .hfpc .card:hover img:nth-child(1) {
 	width: 0;
 }
+
 .hfpc .card:hover img:nth-child(2) {
 	left: 0;
 	width: 100%;
+}
+
+.sptlt img, .glri img {
+	object-fit: cover;
+	object-position: center;
+	max-height: 300px;
+	max-width: 100%;
+	margin: 0 auto;
+}
+
+.sptlt {
+	display: flex;
+	justify-content: center;
+	height: 300px;
+	width: 100%;
+}
+
+.glr {
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+}
+
+.glri {
+	margin: 2.5px 5px;
+}
+
+.wp {
+	height: CALC(30vh + 60px);
+	background-color: var(--info);
+	margin-top: -60px;
+}
+
+.wp div {
+	font-family: "Championship";
+	font-weight: bolder;
+	color: #fafafa;
+	font-size: 50px;
+	text-shadow: 4px 4px var(--warning);
+}
+
+.lsb {
+	position: absolute;
+	top: -20px;
+	width: 100%;
+	color: var(--gray);
+}
+
+.lsb:focus-within button {
+	background-color: var(--primary);
+	color: #fff;
+}
+
+.lsb input {
+	height: 40px;
+	width: 100%;
+	padding: 10px 50px 10px 30px;
+	border: 0;
+	border-radius: 30px;
+	font-size: 15px;
+	line-height: 0;
+	box-shadow: 0 0 20px rgb(0 0 0 / .05);
+	background-color: var(--white);
+}
+
+.lsb button {
+	padding: 0;
+    border: 0;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    height: 30px;
+    width: 30px;
+    line-height: 0;
+	background-color: var(--white);
+    border-radius: 15px;
 }

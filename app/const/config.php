@@ -15,6 +15,7 @@ define('DOMAIN', 'http://menu');
 define('BASEDIR', '');
 define('DATA', '/data');
 define('DATADIR', '..'.DS.'..'.DS.'dropship-seller'.DS.'data');
+define('LOGO', 'http://dropship/assets/img/agit-logo-c.png');
 define('SITENAME', '');
 define('APP_VERSION', '1.0.0');
 

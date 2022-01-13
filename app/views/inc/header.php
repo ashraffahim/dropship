@@ -18,12 +18,12 @@
 	<main>
 		<nav class="navbar mb-5">
 			<div class="container">
-				<div class="col-md-2">
+				<div class="col-2">
 					<a href="/">
-						<img src="/assets/img/agit-logo-c.png" alt="Al Ghaim IT" height="34">
+						<div style="display: inline-block;height: 34px;width: 64px;background-image: url(<?php echo LOGO; ?>);background-size: cover;"></div>
 					</a>
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-6 col-10">
 					<form enctype="xxx-http-urlencode" action="search" class="d-flex">
 						<div class="input-group">
 							<input type="search" name="q" class="form-control">

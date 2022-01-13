@@ -1,4 +1,18 @@
 <div class="container-fluid">
+	<div class="row" data-plugin="hf">
+		<div class="col-12 wp d-flex justify-content-center align-items-center">
+			<div>AGIT</div>
+		</div>
+	</div>
+	<div class="row justify-content-center">
+		<div class="col-lg-4 col-md-6 col-sm-8">
+			<form enctype="xxx-http-urlencode" action="/search" class="lsb">
+					<input type="search" name="q">
+					<button type="submit"><i data-feather="search"></i></button>
+			</form>
+		</div>
+	</div>
+
 	<div class="row">
 		<div class="col-md-10 offset-md-2">
 			<div class="row">

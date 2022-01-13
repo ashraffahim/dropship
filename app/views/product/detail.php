@@ -56,7 +56,7 @@
 							<div class="row mb-3">
 								<div class="col-6">
 									<h1><?php echo $p->p_name; ?></h1>
-									<span class="lead">$<?php echo $p->p_price; ?></span>
+									<span class="lead"><?php echo $data['curr'] . $p->p_price; ?></span>
 								</div>
 							</div>
 							<!-- action -->

@@ -21,7 +21,7 @@ class _Product {
 
 	public function details($h, $n = false) {
 		if ($n) {
-			$this->db->query('SELECT * FROM `product` WHERE `p_handle` = :h LIMIT :nf,1');
+			$this->db->query('SELECT *, `s_country` FROM `product` `p` JOIN `seller` `s` ON (`p`.`p_sellerstamp` = `s`.`id`) WHERE `p_handle` = :h LIMIT :nf,1');
 			$this->db->bind(':h', $h, $this->db->PARAM_STR);
 			$this->db->bind(':nf', $n - 1, $this->db->PARAM_INT);
 		} else {

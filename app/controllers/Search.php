@@ -16,10 +16,15 @@ class Search extends Controller {
 	public function index($q = false)	{
 		$q = $q ? $q : $this->get('q');
 		$r = $this->h->search($q);
+		if (!$r) {
+			$this->error('npf');
+			return;
+		}
 		$this->view('search'.DS.'index', [
 			'title' => '',
-			'description' => '"><meta name="robots" content="noindex',
+			'description' => '',
 			'canonical' => DOMAIN,
+			'meta' => '<meta name="robots" content="noindex">',
 			'schema' => '',
 			'data' => $r
 		]);
