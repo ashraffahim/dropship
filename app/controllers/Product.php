@@ -14,8 +14,8 @@ class Product extends Controller {
 		$this->p = new _Product();
 	}
 
-	public function details($h, $n = false) {
-		$pd = $this->p->details($h, $n);
+	public function details($h) {
+		$pd = $this->p->details($h);
 		
 		if (!$pd) {
 			$this->error('pde');
@@ -23,7 +23,7 @@ class Product extends Controller {
 		}
 		
 		$c = new _Country();
-		$cur = $c->currency($pd->s_country);
+		$curr = $c->currency($pd->s_country);
 		$fs = str_replace(DATADIR.DS.'product'.DS.$pd->id.DS, DATA.'/product/'.$pd->id.'/', glob(DATADIR.DS.'product'.DS.$pd->id.DS.'*'));
 
 		$this->view('product' . DS . 'detail', [

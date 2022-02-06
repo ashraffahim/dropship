@@ -124,9 +124,9 @@ tr:not(:hover) .tr-h-v {
 }
 
 .wp {
-	height: CALC(30vh + 60px);
+	height: CALC(30vh + 63px);
 	background-color: var(--info);
-	margin-top: -60px;
+	margin-top: -63px;
 }
 
 .wp div {

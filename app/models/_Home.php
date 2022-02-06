@@ -13,7 +13,7 @@ class _Home {
 	}
 
 	public function feed() {
-		$this->db->query('SELECT * FROM `product` LIMIT 0,50');
+		$this->db->query('SELECT `p`.*, `s_country` FROM `product` `p` JOIN `seller` `s` ON (`p`.`p_sellerstamp` = `s`.`id`) LIMIT 0,50');
 		return $this->db->result();
 	}
 }
