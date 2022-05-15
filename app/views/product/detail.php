@@ -1,99 +1,91 @@
-<div class="container-fluid" data-plugin="pd">
+<div class="container-fluid product-details">
 	<div class="row">
 		<div class="col-md-10 offset-md-1">
-			<div class="card">
+			<div class="card shadow-sm">
 				<div class="card-body">
 					<div class="row">
-						<!-- Image section / Long text -->
-						<div class="col-md-6">
-							<div class="row mb-3">
-								<div class="col-10 p-0">
-									<div class="sptlt">
-									<?php
-									$p = $data['data'];
-									// spotlight
-									echo '<img src="' . $data['fs'][0] . '" alt="'.$p->p_name.'">';
-									?>
-									</div>
-								</div>
-								
-								<div class="col-1 p-0">
-									<div class="glr">
-									<?php
-									foreach ($data['fs'] as $j => $f) {
-										echo '<div class="glri"><img src="' . $f . '" alt="'.$p->p_name.'"></div>';
-									}
-									?>
-									</div>
-								</div>
-							</div>
 
+						
+						<!-- Left Column -->
+						
+						<div class="col-md-6">
 							<div class="row">
 								<div class="col-12">
-								<!-- Long text -->
-								<?php
-								$cfs = json_decode($p->p_custom_field);
-								$st = '';
-								
-								if ($p->p_description != '') {
-									echo '<h3>Description</h3><span>' . $p->p_description . '</span>';
-								}
-								foreach ($cfs as $f => $v) {
-									if (strlen($v) > 20) {
-										echo '<h3>' . $f . '</h3><span>' . $v . '</span>';
-										continue;
-									}
-									$st .= '<tr><th>' . $f . '</th><td>' . $v . '</td></tr>';
-								}
-								?>
+									<div class="crsl">
+										<div class="crslc">
+											<?php
+											$fs = glob(DATADIR . DS . 'product' . DS . $data['data']->id . DS . '*');
+											foreach ($fs as $f) {
+											?>
+											<div class="crsli">
+												<img src="<?php echo DATA . DS . 'product' . DS . $data['data']->id . DS . basename($f); ?>" alt="<?php echo $data['data']->p_name; ?>">
+											</div>
+											<?php
+											}
+											?>
+										</div>
+										<div class="crslp"><i class="fa fa-angle-left fa-lg"></i></div>
+										<div class="crsln"><i class="fa fa-angle-right fa-lg"></i></div>
+									</div>
 								</div>
 							</div>
 						</div>
+						
+						
+						<!-- Right Column -->
 
-						<!-- Text section -->
 						<div class="col-md-6">
-							<!-- title -->
+							<div class="row mb-3">
+								<div class="col-12">
+									<h1 class="_pn">
+										<?php echo $data['data']->p_name; ?>
+									</h1>
+									<h5 class="text-muted ff2">
+										<?php echo $data['data']->p_category; ?>
+									</h5>
+								</div>
+							</div>
 							<div class="row mb-3">
 								<div class="col-6">
-									<h1><?php echo $p->p_name; ?></h1>
-									<span class="lead"><?php echo $data['curr'] . $p->p_price; ?></span>
+									<div class="lead fct"><?php echo $data['curr'] . '<span class="_pp">' . number_format($data['data']->p_price) . '</span>'; ?></div>
+								</div>
+								<div class="col-6">
+									<button type="button" class="btn btn-theme btn-block add-to-cart" data-id="<?php echo $data['data']->id; ?>">Add to Cart</button>
 								</div>
 							</div>
-							<!-- action -->
 							<div class="row mb-3">
-								<div class="col-4">
-									<a href="tel:<?php echo SALES_TEL; ?>" class="btn btn-light btn-wave btn-block justify-content-between">
-										<i data-feather="phone"></i><div><?php echo SALES_TEL; ?></div><div></div>
-									</a>
-								</div>
-								<div class="col-2">
-									<button class="btn btn-primary btn-wave btn-block justify-content-between" disabled>
-										<div></div><div>Cart</div><i data-feather="shopping-cart"></i>
-									</button>
+								<div class="col-12">
+									<div class="text-muted">
+										<?php echo nl2br($data['data']->p_description); ?>
+									</div>
 								</div>
 							</div>
-							<!-- action 2 -->
-							<div class="row mb-3">
-								<div class="col-6 text-center">
-									<a href="mailto:<?php echo SALES_EMAIL; ?>" class="btn btn-outline-light btn-wave btn-block text-dark">
-										<?php echo SALES_EMAIL; ?>
-									</a>
-								</div>
-							</div>
-							<!-- details -->
 							<div class="row">
-								<div class="col-6">
-									<?php
-									if ($st != '') {
-										echo '<table class="table table-sm">' . $st . '</table>';
-									}
-									?>
+								<div class="col-12">
+									<h5>Custom Specs</h5>
+								</div>
+								<div class="col-md-6 col-sm-10">
+									<table class="table table-sm table-hover ff3 text-muted">
+										<?php
+										$jd = json_decode($data['data']->p_custom_field);
+										foreach ($jd as $f => $v) {
+										?>
+										<tr>
+											<th><?php echo $f; ?></th>
+											<td><?php echo $v; ?></td>
+										</tr>
+										<?php
+										}
+										?>
+									</table>
 								</div>
 							</div>
 						</div>
+					
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+<script>crsl();allowAddToCart();</script>

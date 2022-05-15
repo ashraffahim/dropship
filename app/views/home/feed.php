@@ -1,9 +1,4 @@
 <div class="container-fluid">
-	<div class="row" data-plugin="hf">
-		<div class="col-12 wp d-flex justify-content-center align-items-center">
-			<div>AGIT</div>
-		</div>
-	</div>
 	<div class="row justify-content-center mb-5">
 		<div class="col-lg-4 col-md-6 col-sm-8">
 			<form enctype="xxx-http-urlencode" action="/search" class="lsb">
@@ -40,6 +35,7 @@
 				<?php
 				}
 				?>
+				<?php var_dump($data); ?>
 			</div>
 		</div>
 	</div>

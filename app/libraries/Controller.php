@@ -6,7 +6,7 @@ class Controller {
 
 	public function view($view, $data = [], $wrap = true) {
 
-		if (isset($_SERVER['HTTP_SEC_FETCH_MODE']) && $_SERVER['HTTP_SEC_FETCH_MODE'] == 'cors') {
+		if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) == 'XMLHttpRequest') {
 			$wrap = false;
 		}
 
@@ -46,15 +46,9 @@ class Controller {
 
 	public function status($data = [], $ajax = false) {
 
-		if (isset($_SERVER['HTTP_SEC_FETCH_MODE']) && $_SERVER['HTTP_SEC_FETCH_MODE'] == 'cors') {
-			$ajax = true;
-		}
-
-		if ($ajax) {
-
+		if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
 			require_once '../app/views/api/json.php';
 			exit;
-		
 		}
 
 	}
