@@ -37,6 +37,10 @@ class Database {
 		$this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	}
 
+	public function error() {
+		return $this->pdo->errorInfo();
+	}
+
 	public function query($query) {
 		$this->statement = $this->pdo->prepare($query);
 	}
@@ -84,8 +88,8 @@ class Database {
 		return $this->statement->fetch(PDO::FETCH_OBJ);
 	}
 
-	public function execute() {
-		$this->statement->execute();
+	public function execute($arr = null) {
+		return $this->statement->execute($arr);
 	}
 
 	public function rowCount() {

@@ -6,7 +6,7 @@ class Controller {
 
 	public function view($view, $data = [], $wrap = true) {
 
-		if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) == 'XMLHttpRequest') {
+		if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
 			$wrap = false;
 		}
 
@@ -46,7 +46,7 @@ class Controller {
 
 	public function status($data = [], $ajax = false) {
 
-		if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
+		if ((isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') || $ajax) {
 			require_once '../app/views/api/json.php';
 			exit;
 		}

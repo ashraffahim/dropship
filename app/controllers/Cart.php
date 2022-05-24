@@ -19,7 +19,10 @@ class Cart extends Controller {
 			'description' => '',
 			'canonical' => '',
 			'meta' => '<meta name="robots" content="noindex">',
-			'schema' => ''
+			'schema' => '',
+			'data' => [
+				'sc' => $this->c->serviceCharge()
+			]
 		]);
 	}
 

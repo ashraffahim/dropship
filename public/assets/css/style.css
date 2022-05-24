@@ -26,13 +26,25 @@ Custom css
 	--c60i: 0 0 0;
 	--c30i: 255 255 255;
 	--c10i: 255 255 255;
+	--info: 20 186 228;
+	--success: 49 201 113;
+	--warning: 244 196 20;
+	--danger: 245 67 148;
 	--font-1: "Poppins Extra Bold";
 	--font-2: "Poppins Regular";
 	--font-3: "Raleway";
+	--outline-shadow: 0 0 0 1px rgb(var(--c30));
+	--hover-shadow: 0 0 20px -5px rgb(var(--c30) / .3);
+
+	--bKash: 227 16 110;
+	--bKashi: 255 255 255;
+
+	accent-color: rgb(var(--c10));
 }
 
 body {
-	font-family: var(--font-2);
+	font-family: var(--font-3);
+	background-color: rgb(var(--c60));
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -41,12 +53,6 @@ h1, h2, h3, h4, h5, h6 {
 
 thead th {
 	border-top: 0!important;
-}
-
-.btn-theme {
-	background-color: rgb(var(--c10));
-	font-family: var(--font-1);
-	color: rgb(var(--c10i));
 }
 
 .ff1 {
@@ -77,8 +83,134 @@ thead th {
 	color: rgb(var(--c10));
 }
 
+.loading-spinner {
+	display: inline-block;
+	height: 18px;
+	aspect-ratio: 1/1;
+	border-radius: 9px;
+	border: 2px solid #fff;
+	border-top-color: transparent;
+	border-right-color: transparent;
+	vertical-align: -5px;
+	-webkit-animation: loading-spinner .5s linear infinite;
+	animation: loading-spinner .5s linear infinite;
+}
+
+@keyframes loading-spinner {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@-webkit-keyframes loading-spinner {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+.form-control, .custom-select {
+	border-width: .5px;
+}
+
+.form-control:focus, .custom-select:focus, .btn:focus {
+	box-shadow: var(--outline-shadow);
+}
+
+.btn:not(.btn-lg,.btn-sm) img {
+	height: 18px;
+}
+
+.btn-theme {
+	background-color: rgb(var(--c10));
+	font-family: var(--font-1);
+	color: rgb(var(--c10i));
+}
+
+.btn-theme:active {
+	box-shadow: 0 0 0 .2rem rgb(var(--c10) / .5);
+}
+
+.card-tag-info, .card-tag-success, .card-tag-warning, .card-tag-danger {
+	display: flex;
+	padding: 1rem;
+	border-left: 3px solid;
+}
+
+.card-tag-info {
+	border-color: rgb(var(--info));
+	background-color: rgb(var(--info) / .1);
+}
+
+.card-tag-success {
+	border-color: rgb(var(--success));
+	background-color: rgb(var(--success) / .1);
+}
+
+.card-tag-warning {
+	border-color: rgb(var(--warning));
+	background-color: rgb(var(--warning) / .1);
+}
+
+.card-tag-danger {
+	border-color: rgb(var(--danger));
+	background-color: rgb(var(--danger) / .1);
+}
+
+.bg-bKash {
+	background-color: rgb(var(--bKash));
+	color: rgb(var(--bKashi));
+}
+
+.feed a {
+	color: rgb(var(--c60i)) !important;
+	text-decoration: none;
+}
+
+.feed .card {
+	background-color: rgb(var(--c60));
+	border-radius: .25rem;
+	margin-bottom: 1rem;
+	overflow: hidden;
+	transition: .1s ease-in box-shadow;
+}
+
+.feed .card:hover {
+	box-shadow: 0 0 0 4px rgb(var(--c60)), 0 0 0 6px rgb(var(--c30));
+}
+
+.feed .card-thumb {
+	height: 200px;
+}
+
+.feed .card-thumb img {
+	position: relative;
+	top: 50%;
+	left: 50%;
+	max-width: 100%;
+	max-height: 200px;
+	transform: translate(-50%, -50%);
+}
+
+.feed .card-body {
+	height: 100px;
+}
+
 nav {
 	z-index: 999;
+}
+
+.head-search {
+	border-radius: .25rem;
+}
+
+.head-search input:focus, .head-search button:focus {
+	box-shadow: none;
 }
 
 .product-details .crsl {
@@ -92,6 +224,9 @@ nav {
 
 .product-details .crsli {
 	position: absolute;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
 	top: 0;
 	left: 0;
 	width: 100%;
@@ -130,12 +265,8 @@ nav {
 }
 
 .product-details .crsl img {
-	position: relative;
-	top: 50%;
-	left: 50%;
 	max-width: 100%;
 	max-height: 300px;
-	transform: translate(-50%, -50%);
 }
 
 .product-details th, 

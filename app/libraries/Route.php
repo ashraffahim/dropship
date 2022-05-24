@@ -10,7 +10,7 @@ class Route {
 		// Query string parsing rule
 		// /<controller>/<action>/[,args...]
 		$qs = self::removeQSVar($qs);
-		preg_match('/^([a-z0-9]+|)(?:\/|)([a-z0-9]+|)(?:\/|)(.*)$/i', $qs, $rgx);
+		preg_match('/^([a-z0-9-]+|)(?:\/|)([a-z0-9-]+|)(?:\/|)(.*)$/i', $qs, $rgx);
 		self::$param['controller'] = $rgx[1];
 		self::$param['action'] = $rgx[2];
 		self::$param['args'] = $rgx[3] != '' ? explode('/', $rgx[3]) : [];
@@ -42,7 +42,7 @@ class Route {
 	}
 
 	private static function convertToCamelCaps($str) {
-		return lcfirst($this->convertToStudlyCaps($str));
+		return lcfirst(self::convertToStudlyCaps($str));
 	}
 
 	private static function removeQSVar($qs) {

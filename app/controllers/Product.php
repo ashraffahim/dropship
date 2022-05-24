@@ -3,8 +3,8 @@
 namespace controllers;
 
 use libraries\Controller;
+use controllers\Country;
 use models\_Product;
-use models\_Country;
 
 class Product extends Controller {
 
@@ -22,8 +22,8 @@ class Product extends Controller {
 			return;
 		}
 		
-		$c = new _Country();
-		$curr = $c->currency($pd->s_country);
+		$c = new Country();
+		$curr = $c->currSymbol($pd->s_country);
 		$fs = str_replace(DATADIR.DS.'product'.DS.$pd->id.DS, DATA.'/product/'.$pd->id.'/', glob(DATADIR.DS.'product'.DS.$pd->id.DS.'*'));
 
 		$this->view('product' . DS . 'detail', [
@@ -35,10 +35,11 @@ class Product extends Controller {
 				"@context": "https://schema.org/",
 				"@type": "Product",
 				"name": "' . $pd->p_name . '",
-				"image": ["' . implode("\",\" \n", $fs) . '"],
+				"image": ["' . implode("\",\"", $fs) . '"],
 				"category": "' . $pd->p_category . '",
 				'.(
-					$pd->p_description != '' ? '"description": "' . $pd->p_description . '",' : ''
+					$pd->p_description != '' ? '"description": "' . str_replace("\r\n", '', $pd->p_description) . '",
+					' : ''
 				).(
 					
 					$pd->p_brand != '' ? '"brand": {
@@ -48,13 +49,13 @@ class Product extends Controller {
 				
 				).'
 				"offer": {
-					"priceCurrency": "' . $curr . '",
+					"priceCurrency": "' . $curr[$pd->s_country] . '",
 					"price": "' . $pd->p_price . '",
 					"url": "' . DOMAIN . '/' . $h . '"
 				}
 			}',
 			'data' => $pd,
-			'curr' => $curr,
+			'curr' => $curr[$pd->s_country],
 			'fs' => $fs
 		]);
 	}

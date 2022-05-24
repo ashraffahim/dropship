@@ -24,8 +24,8 @@
 											}
 											?>
 										</div>
-										<div class="crslp"><i class="fa fa-angle-left fa-lg"></i></div>
-										<div class="crsln"><i class="fa fa-angle-right fa-lg"></i></div>
+										<div class="crslp"><i class="fal fa-arrow-left"></i></div>
+										<div class="crsln"><i class="fal fa-arrow-right"></i></div>
 									</div>
 								</div>
 							</div>
@@ -36,21 +36,30 @@
 
 						<div class="col-md-6">
 							<div class="row mb-3">
-								<div class="col-12">
-									<h1 class="_pn">
-										<?php echo $data['data']->p_name; ?>
-									</h1>
-									<h5 class="text-muted ff2">
-										<?php echo $data['data']->p_category; ?>
-									</h5>
+								<div class="col-lg-5">
+									<div class="row">
+										<div class="col-12">
+											<h1 class="_pn">
+												<?php echo $data['data']->p_name; ?>
+											</h1>
+											<h5 class="text-muted ff2">
+												<?php echo $data['data']->p_category; ?>
+											</h5>
+										</div>
+										<div class="col-12 mb-3">
+											<div class="lead fct"><?php echo $data['curr'] . '<span class="_pp">' . number_format($data['data']->p_price) . '</span>'; ?></div>
+										</div>
+									</div>
 								</div>
-							</div>
-							<div class="row mb-3">
-								<div class="col-6">
-									<div class="lead fct"><?php echo $data['curr'] . '<span class="_pp">' . number_format($data['data']->p_price) . '</span>'; ?></div>
-								</div>
-								<div class="col-6">
-									<button type="button" class="btn btn-theme btn-block add-to-cart" data-id="<?php echo $data['data']->id; ?>">Add to Cart</button>
+								<div class="col-lg-7">
+									<div class="row h-100 align-items-center">
+										<div class="col-4">
+											<button type="button" class="btn btn-outline-secondary btn-block add-to-save" data-id="<?php echo $data['data']->id; ?>">Save</button>
+										</div>
+										<div class="col-8">
+											<button type="button" class="btn btn-theme btn-block add-to-cart" data-id="<?php echo $data['data']->id; ?>">Add to Cart</button>
+										</div>
+									</div>
 								</div>
 							</div>
 							<div class="row mb-3">
@@ -64,7 +73,7 @@
 								<div class="col-12">
 									<h5>Custom Specs</h5>
 								</div>
-								<div class="col-md-6 col-sm-10">
+								<div class="col-lg-6">
 									<table class="table table-sm table-hover ff3 text-muted">
 										<?php
 										$jd = json_decode($data['data']->p_custom_field);

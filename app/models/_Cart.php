@@ -12,6 +12,11 @@ class _Cart {
 		$this->db = new Database();
 	}
 
+	public function serviceCharge() {
+		$this->db->query('SELECT `amount` FROM `sys_charge`');
+		return $this->db->single()->amount;
+	}
+
 	public function data($ids) {
 		if (!preg_match('/^[0-9,]+$/', $ids)) {
 			exit;

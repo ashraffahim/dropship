@@ -1,7 +1,7 @@
 <div class="container-fluid">
-	<form method="post">
+	<form method="post" class="checkout-form" action="/checkout/order">
 		<div class="row">
-			<div class="col-md-7 offset-md-1">
+			<div class="col-md-7 offset-md-1 cart-data-container">
 				<div class="card shadow-sm mb-3">
 					<div class="card-body">
 
@@ -28,7 +28,7 @@
 			</div>
 
 			<!-- Buttons -->
-			<div class="col-md-3">
+			<div class="col-md-3 cart-summary-container">
 				<div class="card shadow-sm">
 					<div class="card-body">
 						<div class="row mb-3">
@@ -49,8 +49,8 @@
 									<div class="total-discount">0.00</div>
 								</div>
 								<div class="d-flex justify-content-between">
-									<div>VAT</div>
-									<div class="total-vat">0.00</div>
+									<div>Service</div>
+									<div class="total-charge">0.00</div>
 								</div>
 								<div class="d-flex justify-content-between">
 									<b>Payable</b>
@@ -65,9 +65,61 @@
 								</div>
 							</div>
 						</div>
-						<div class="row">
+
+						<!-- Payment options -->
+						<div class="row payment-method collapse">
+							<div class="col-12 mb-1">
+								<a href="/checkout/pay/stripe/{id}" class="btn btn-dark btn-block">Credit / Debit Card</a>
+							</div>
+							<div class="col-12 mb-1">
+								<a href="/checkout/pay/bkash/{id}" class="btn bg-bKash btn-block"><img src="/assets/img/bKash-logo.png"> bKash</a>
+							</div>
 							<div class="col-12">
-								<button type="submit" class="btn btn-theme btn-block">CHECKOUT</button>
+								<button type="button" class="btn btn-light btn-block cancel-checkout">Cancel</button>
+							</div>
+						</div>
+
+						<div class="row shipping-address-container collapse">
+							<div class="col-12">
+								<div class="form-group"><input type="text" name="address" class="form-control" placeholder="Address"></div>
+							</div>
+							<div class="col-12">
+								<div class="form-group"><input type="text" name="address_2" class="form-control" placeholder="Address Line 2"></div>
+							</div>
+							<div class="col-12">
+								<div class="form-group"><input type="text" name="country" class="form-control" placeholder="Country"></div>
+							</div>
+							<div class="col-6">
+								<div class="form-group"><input type="text" name="city" class="form-control" placeholder="City"></div>
+							</div>
+							<div class="col-6">
+								<div class="form-group"><input type="text" name="zip" class="form-control" placeholder="ZIP"></div>
+							</div>
+							<div class="col-12">
+								<div class="form-group"><input type="text" name="phone" class="form-control" placeholder="Phone"></div>
+							</div>
+							<div class="col-12">
+								<div class="form-group"><input type="text" name="email" class="form-control" placeholder="Email"></div>
+							</div>
+							<div class="col-12">
+								<button type="submit" class="btn btn-theme btn-block checkout">SUBMIT</button>
+							</div>
+						</div>
+
+						<!-- Check login -->
+						<div class="row checkout-btn-container collapse show">
+							<div class="col-12">
+								<?php
+								if (isset($_SESSION['u'])) {
+								?>
+								<button type="button" class="btn btn-theme btn-block proceed-to-checkout">CHECKOUT</button>
+								<?php
+								} else {
+								?>
+								<a href="/login?redir=/cart" class="btn btn-theme btn-block">CHECKOUT</a>
+								<?php
+								}
+								?>
 							</div>
 						</div>
 					</div>
@@ -77,4 +129,4 @@
 		</div>
 	</form>
 </div>
-<script>loadCartData();</script>
+<script>loadCartData({serviceCharge: <?php echo $data['data']['sc']; ?>});allowOrder();</script>

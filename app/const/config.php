@@ -24,4 +24,8 @@ define('SALES_TEL', '+971556314003');
 define('SALES_EMAIL', 'sales@alghaim.com');
 define('TECH_EMAIL', 'support@alghaim.com');
 
+// Server
+define('SMTP', 'mail.alghaim.com');
+define('SMTP_PORT', '2525');
+
 ?>
