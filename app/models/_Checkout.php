@@ -40,6 +40,22 @@ class _Checkout {
 
 	}
 
+	public function orderCurrency($id) {
+		
+		$this->db->query('
+			SELECT 
+				`o_currency` 
+			FROM 
+				`order` 
+			WHERE 
+				`id` = :id
+		');
+		$this->db->bind(':id', $id, $this->db->PARAM_INT);
+
+		return $this->db->single()->o_currency;
+
+	}
+
 	public function serviceCharge() {
 		$this->db->query('SELECT `amount` FROM `sys_charge`');
 		return $this->db->single()->amount;
@@ -173,6 +189,7 @@ class _Checkout {
 		}
 
 		// Isolated ids with one currency
+
 		$ids = implode(',', $isidsarr);
 
 
@@ -203,8 +220,11 @@ class _Checkout {
 			$vs[] = $d['qty_' . $p->id];
 			$vs[] = $p->p_price;
 
-			$ta += $d['qty_' . $p->id] * $p->p_price;
+			$ta += ((int)$d['qty_' . $p->id] * $p->p_price);
 		}
+
+		// Service cahrge calc
+		$sf = $ta * $this->serviceCharge();
 
 		// 
 		// End currency control
@@ -232,7 +252,7 @@ class _Checkout {
 				UPDATE 
 					`order`
 				SET 
-					`o_currency` = "",
+					`o_currency` = "' . $c . '",
 					`o_discount` = :d, 
 					`o_service_charge` = :sf,
 					`o_ship_cost` = :sc,
@@ -251,7 +271,7 @@ class _Checkout {
 			');
 			
 			$this->db->bind(':d', 0, $this->db->PARAM_STR);
-			$this->db->bind(':sf', 0, $this->db->PARAM_STR);
+			$this->db->bind(':sf', $sf, $this->db->PARAM_STR);
 			$this->db->bind(':sc', 0, $this->db->PARAM_STR);
 			$this->db->bind(':sd1', $d['address'], $this->db->PARAM_STR);
 			$this->db->bind(':sd2', $d['address_2'], $this->db->PARAM_STR);
@@ -317,7 +337,7 @@ class _Checkout {
 						`o_timestamp`,
 						`o_latimestamp`
 					) VALUES (
-						"",
+						"' . $c . '",
 						' . $_SESSION['u']->id . ',
 						:d,
 						:sf,
@@ -336,7 +356,7 @@ class _Checkout {
 			');
 			
 			$this->db->bind(':d', 0, $this->db->PARAM_STR);
-			$this->db->bind(':sf', 0, $this->db->PARAM_STR);
+			$this->db->bind(':sf', $sf, $this->db->PARAM_STR);
 			$this->db->bind(':sc', 0, $this->db->PARAM_STR);
 			$this->db->bind(':sd1', $d['address'], $this->db->PARAM_STR);
 			$this->db->bind(':sd2', $d['address_2'], $this->db->PARAM_STR);

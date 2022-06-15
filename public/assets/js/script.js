@@ -80,7 +80,7 @@ function loadCartData(opt) {
 
 			for (var i = 0; i < jd.length; i++) {
 				lsjd = JSON.parse(localStorage.getItem('ci' + jd[i].id));
-				$('.cart-data').append(`<tr><td>${i+1}<input type="hidden" name="item[]" value="${jd[i].id}"></td><td>${jd[i].p_name}</td><td><input type="number" name="qty_${jd[i].id}" value="${lsjd.q}" min="0" class="border-0 qty" required></td><td class="price">${jd[i].p_price}</td><td></td></tr>`);
+				$('.cart-data').append(`<tr><td>${i+1}<input type="hidden" name="item[]" value="${jd[i].id}"></td><td>${jd[i].p_name}</td><td><input type="number" name="qty_${jd[i].id}" value="${lsjd.q}" min="0" class="border-0 qty" required></td><td>${jd[i].s_currency}<span class="price">${jd[i].p_price}</span></td><td></td></tr>`);
 				t += Number(jd[i].p_price);
 			}
 			calculateCartTotal(opt);

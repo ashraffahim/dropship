@@ -4,6 +4,7 @@ namespace controllers;
 
 use libraries\Controller;
 use models\_Cart;
+use models\_Country;
 
 class Cart extends Controller {
 
@@ -14,6 +15,8 @@ class Cart extends Controller {
 	}
 
 	public function index() {
+		$c = new _Country();
+		
 		$this->view('cart/index', [
 			'title' => '',
 			'description' => '',
@@ -21,7 +24,8 @@ class Cart extends Controller {
 			'meta' => '<meta name="robots" content="noindex">',
 			'schema' => '',
 			'data' => [
-				'sc' => $this->c->serviceCharge()
+				'sc' => $this->c->serviceCharge(),
+				'c' => $c->codeNameList()
 			]
 		]);
 	}

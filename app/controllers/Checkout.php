@@ -48,9 +48,17 @@ class Checkout extends Controller {
 
 			return;
 		}
+
+		// id = $id
+		$cur = $this->c->orderCurrency($id);
+		$a = $this->c->orderPayable($id);
 		
 		switch ($m) {
 			case 'stripe':
+
+				if ($this->RMisPost()) {
+					$this->stripe($id, $cur, number_format($a, 2, '', ''));
+				}
 				
 				$this->view('checkout/stripe', [
 					'title' => '',
@@ -104,7 +112,7 @@ class Checkout extends Controller {
 
 	private function stripe($id, $c, $a) {
 
-		require '../libraries/stripe-php/init.php';
+		require '../app/libraries/stripe-php/init.php';
 
 		// This is your test secret API key.
 		\Stripe\Stripe::setApiKey('sk_test_51JGXp4IoGl18YWC8sqlP7TeCjGpezoYpn45HwDmSUWGmNLCeKG5EfdY2ZUYCQATLhovA4HuevEdSPH1Xp0yGhqFI00tEdFGqMx');
@@ -113,8 +121,8 @@ class Checkout extends Controller {
 		
 		try {
 			// retrieve JSON from POST body
-			$jsonStr = file_get_contents('php://input');
-			$jsonObj = json_decode($jsonStr);
+			// $jsonStr = file_get_contents('php://input');
+			// $jsonObj = json_decode($jsonStr);
 		
 			// Create a PaymentIntent with amount and currency
 			$paymentIntent = \Stripe\PaymentIntent::create([
@@ -134,6 +142,8 @@ class Checkout extends Controller {
 			http_response_code(500);
 			echo json_encode(['error' => $e->getMessage()]);
 		}
+
+		exit;
 	}
 }
 

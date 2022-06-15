@@ -23,7 +23,7 @@ class Product extends Controller {
 		}
 		
 		$c = new Country();
-		$curr = $c->currSymbol($pd->s_country);
+		$curr = $c->currSymbolList();
 		$fs = str_replace(DATADIR.DS.'product'.DS.$pd->id.DS, DATA.'/product/'.$pd->id.'/', glob(DATADIR.DS.'product'.DS.$pd->id.DS.'*'));
 
 		$this->view('product' . DS . 'detail', [
@@ -49,13 +49,13 @@ class Product extends Controller {
 				
 				).'
 				"offer": {
-					"priceCurrency": "' . $curr[$pd->s_country] . '",
+					"priceCurrency": "' . $curr[$pd->s_currency] . '",
 					"price": "' . $pd->p_price . '",
 					"url": "' . DOMAIN . '/' . $h . '"
 				}
 			}',
 			'data' => $pd,
-			'curr' => $curr[$pd->s_country],
+			'curr' => $curr[$pd->s_currency],
 			'fs' => $fs
 		]);
 	}

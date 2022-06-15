@@ -13,26 +13,16 @@ class Country extends Controller {
 		$this->c = new _Country();
 	}
 
-	public function customCountryList() {
-		$ret = ':';
-
-		foreach ($this->c->list() as $i => $v) {
-			$ret .= ',' . $i . ':' . $v[0];
-		}
-
-		return $ret;
+	public function codeNameList() {
+		return $this->c->codeNameList();
 	}
 
-	public function currSymbol($c, $json = false) {
-		if (!is_array($c)) {
-			$c = explode(',', $c);
-		}
+	public function currSymbolList() {
 		$cs = [];
+		$c = $this->c->currSymbolList();
 		foreach ($c as $cr) {
-			$cs[$cr] = $this->c->list()[$cr][1];
+			$cs[$cr->currency] = $cr->currency_symbol;
 		}
-		
-		$this->status($cs, $json);
 		return $cs;
 	}
 

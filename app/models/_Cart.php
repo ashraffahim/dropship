@@ -21,7 +21,14 @@ class _Cart {
 		if (!preg_match('/^[0-9,]+$/', $ids)) {
 			exit;
 		}
-		$this->db->query('SELECT * FROM `product` WHERE `id` IN (' . $ids . ')');
+		$this->db->query('
+			SELECT 
+				`p`.*, 
+				`s`.`s_currency` 
+			FROM 
+				`product` `p` JOIN `seller` `s` ON `p`.`p_sellerstamp` = `s`.`id` 
+			WHERE 
+				`p`.`id` IN (' . $ids . ')');
 
 		return $this->db->result();
 	}

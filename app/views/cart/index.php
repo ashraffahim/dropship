@@ -87,7 +87,18 @@
 								<div class="form-group"><input type="text" name="address_2" class="form-control" placeholder="Address Line 2"></div>
 							</div>
 							<div class="col-12">
-								<div class="form-group"><input type="text" name="country" class="form-control" placeholder="Country"></div>
+								<div class="form-group">
+									<select name="country" class="custom-select">
+										<option disabled selected>Country</option>
+										<?php
+										foreach ($data['data']['c'] as $c) {
+										?>
+										<option value="<?php echo $c->code; ?>"><?php echo $c->name; ?></option>
+										<?php
+										}
+										?>
+									</select>
+								</div>
 							</div>
 							<div class="col-6">
 								<div class="form-group"><input type="text" name="city" class="form-control" placeholder="City"></div>
