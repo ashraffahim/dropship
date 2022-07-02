@@ -13,7 +13,7 @@ define('DB_NAME', 'dropship_db');
 define('DS', DIRECTORY_SEPARATOR);
 define('DOMAIN', 'http://menu');
 define('BASEDIR', '');
-define('DATA', '/data');
+define('DATA', 'http://dropship-ftp');
 define('DATADIR', '..'.DS.'..'.DS.'dropship-seller'.DS.'data');
 define('LOGO', 'http://dropship/assets/img/agit-logo-c.png');
 define('SITENAME', '');

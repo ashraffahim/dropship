@@ -114,6 +114,15 @@ thead th {
 	}
 }
 
+.hta {
+	/* hidden table actions */
+	visibility: hidden;
+}
+
+tr:hover .hta {
+	visibility: visible;
+}
+
 .form-control, .custom-select {
 	border-width: .5px;
 }

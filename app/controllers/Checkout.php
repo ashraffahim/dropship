@@ -23,6 +23,20 @@ class Checkout extends Controller {
 		]);
 	}
 
+	public function success($id = false) {
+		$this->sanitizeInputGet();
+		$data = $this->c->success($id, $this->get('payment_intent_client_secret', ''));
+
+		$this->view('checkout/success', [
+			'title' => '',
+			'description' => '',
+			'canonical' => '',
+			'meta' => '<meta name="robots" content="noindex">',
+			'schema' => '',
+			'data' => $data
+		]);
+	}
+
 	public function pay($m = false, $id = false) {
 		$am = $this->availMethod();
 
@@ -47,6 +61,10 @@ class Checkout extends Controller {
 			}
 
 			return;
+		} else {
+			if (!$this->c->validatePayableID($id)) {
+				redir('/cart');
+			}
 		}
 
 		// id = $id

@@ -1,6 +1,8 @@
 <div class="container-fluid">
 	<form method="post" class="checkout-form" action="/checkout/order">
 		<div class="row">
+			<div class="col-md-7 offset-md-1 mb-3 cart-alert">
+			</div>
 			<div class="col-md-7 offset-md-1 cart-data-container">
 				<div class="card shadow-sm mb-3">
 					<div class="card-body">
@@ -140,4 +142,4 @@
 		</div>
 	</form>
 </div>
-<script>loadCartData({serviceCharge: <?php echo $data['data']['sc']; ?>});allowOrder();</script>
+<script>var opt = {serviceCharge: <?php echo $data['data']['sc']; ?>};loadCartData(opt);cartDataEL(opt);allowOrder();</script>

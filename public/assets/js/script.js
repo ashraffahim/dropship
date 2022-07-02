@@ -42,6 +42,10 @@ function setQtyToCart(id, q) {
 	}
 }
 
+function removeFromCart(id) {
+	localStorage.removeItem('ci' + id);
+}
+
 function getCartIds() {
 	var d = '', m;
 	for (let i = 0; i < localStorage.length; i++) {
@@ -55,8 +59,11 @@ function getCartIds() {
 }
 
 function calculateCartTotal(opt) {
-	var q = 0, a = 0, d = 0, c = 0;
-	$('.cart-data tr').each(function() {
+	var q = 0, a = 0, d = 0, c = 0, sc = '';
+	if ($('.sccb:checked').length) {
+		sc = '.sc' + $('.sccb:checked').val();
+	}
+	$(`.cart-data tr${sc}:not(.sc)`).each(function() {
 		q += Number($(this).find('.qty').val());
 		a += Number($(this).find('.qty').val()) * Number($(this).find('.price').text());
 	});
@@ -70,26 +77,52 @@ function calculateCartTotal(opt) {
 	$('.total-invoice-amount').text((a - d + c).toFixed(2));
 }
 
+function cartDataEL(opt) {
+	// Cart data event listeners
+	$('.cart-data').on('change', '.qty', function() {
+		setQtyToCart($(this).attr('name').match(/^qty_([0-9]+)$/)[1], $(this).val());
+		calculateCartTotal(opt);
+	});
+
+	$('.cart-data').on('change', '.sccb', function() {
+		calculateCartTotal(opt);
+	});
+	
+	$('.cart-data').on('click', '.rmic', function() {
+		removeFromCart($(this).data('id'));
+		$(this).parents('tr').remove();
+		calculateCartTotal(opt);
+	});
+}
+
 function loadCartData(opt) {
+	$('.cart-data').empty();
 	$.ajax({
 		type: 'POST',
 		url: '/cart/data',
 		data: 'ids=' + getCartIds(),
 		success: function(data) {
-			var lsjd, jd = JSON.parse(data), t = 0;
+			var lsjd, jd = JSON.parse(data), t = 0, ps = [], ks;
 
 			for (var i = 0; i < jd.length; i++) {
 				lsjd = JSON.parse(localStorage.getItem('ci' + jd[i].id));
-				$('.cart-data').append(`<tr><td>${i+1}<input type="hidden" name="item[]" value="${jd[i].id}"></td><td>${jd[i].p_name}</td><td><input type="number" name="qty_${jd[i].id}" value="${lsjd.q}" min="0" class="border-0 qty" required></td><td>${jd[i].s_currency}<span class="price">${jd[i].p_price}</span></td><td></td></tr>`);
 				t += Number(jd[i].p_price);
+				if (typeof ps[jd[i].s_currency] == 'undefined') {
+					ps[jd[i].s_currency] = `<tr class="sc"><td colspan="5"><label><input type="radio" name="c" value="${jd[i].s_currency}" class="sccb"> Buy all in ${jd[i].s_currency}</label></td></tr>`;
+				}
+				ps[jd[i].s_currency] += `<tr class="sc${jd[i].s_currency}"><td>${i+1}<input type="hidden" name="item[]" value="${jd[i].id}"></td><td>${jd[i].p_name}</td><td><input type="number" name="qty_${jd[i].id}" value="${lsjd.q}" min="0" class="border-0 qty" required></td><td>${jd[i].s_currency}<span class="price">${jd[i].p_price}</span></td><td class="text-right"><a class="btn rmic hta" data-id="${jd[i].id}"><i class="fal fa-trash text-danger"></i></a></td></tr>`;
+			}
+			ks = Object.keys(ps);
+			for (let k of ks) {
+				$('.cart-data').append(ps[k]);
+			}
+			if (ks.length > 1) {
+				$('.cart-alert').append('<div class="card-tag card-tag-info">Items of ONE currency can be bought at a time</div>');
+			} else {
+				$('tr.sc').hide();
 			}
 			calculateCartTotal(opt);
 		}
-	});
-
-	$('.cart-data').on('change', '.qty', function() {
-		setQtyToCart($(this).attr('name').match(/^qty_([0-9]+)$/)[1], $(this).val());
-		calculateCartTotal(opt);
 	});
 }
 

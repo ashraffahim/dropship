@@ -18,12 +18,17 @@
 								</div>
 							</div>
 						</div>
-						<div class="row justify-content-end">
+						<div class="row justify-content-start flex-row-reverse">
 							<div class="col-lg-4 col-md-6">
 								<button id="submit" class="btn btn-dark btn-block">
 									<div class="loading-spinner d-none" id="spinner"></div>
 									<span id="button-text">Pay now</span>
 								</button>
+							</div>
+							<div class="col-lg-4 col-md-6">
+								<a href="/cart" class="btn btn-block">
+									<span>Cancel</span>
+								</a>
 							</div>
 						</div>
 					</form>

@@ -33,11 +33,37 @@ class _Checkout {
 			FROM 
 				`order` 
 			WHERE 
-				`o_status` = 0 
+				`id` NOT IN (
+					SELECT 
+						`p_order` 
+					FROM 
+						`payment`
+				)
 				AND `o_buyer` = ' . $_SESSION['u']->id
 		);
 		return $this->db->single();
 
+	}
+
+	public function validatePayableID($id) {
+		$this->db->query('
+			SELECT 
+				`id` 
+			FROM 
+				`order` 
+			WHERE 
+				`id` = :id AND 
+				`id` NOT IN (
+					SELECT 
+						`p_order` 
+					FROM 
+						`payment`
+				)
+		');
+
+		$this->db->bind(':id', $id, $this->db->PARAM_INT);
+
+		return isset($this->db->single()->id);
 	}
 
 	public function orderCurrency($id) {
@@ -75,7 +101,7 @@ class _Checkout {
 				AND `o_buyer` = ' . $_SESSION['u']->id . '
 		');
 
-		$this->db->bind(':id', $id);
+		$this->db->bind(':id', $id, $this->db->PARAM_INT);
 
 		$ha = $this->db->single()->ha;
 
@@ -412,6 +438,74 @@ class _Checkout {
 				'id' => $inv
 			];
 		}
+	}
+
+	public function success($id, $is) {
+		if ($id == '' || $is == '') {
+			return [
+				'status' => 0
+			];
+		}
+
+		$this->db->query('
+			SELECT 
+				`id` 
+			FROM 
+				`order` 
+			WHERE 
+				`id` = :id AND 
+				`id` NOT IN (
+					SELECT 
+						`p_order` 
+					FROM 
+						`payment`
+				) AND 
+				`o_buyer` = :b
+		');
+
+		$this->db->bind(':id', $id, $this->db->PARAM_INT);
+		$this->db->bind(':b', $_SESSION['u']->id, $this->db->PARAM_INT);
+
+		$o = $this->db->single();
+
+		if ($o) {
+			$id = $o->id;
+		} else {
+			return [
+				'status' => 0
+			];
+		}
+
+		$this->db->query('
+			INSERT INTO
+				`payment` (
+					`p_order`, 
+					`p_method`, 
+					`p_secret`, 
+					`p_status`,
+					`p_timestamp`,
+					`p_latimestamp`
+					) 
+			VALUES (
+				:o,
+				1,
+				:s,
+				0,
+				:t,
+				:lt
+			)
+		');
+
+		$this->db->bind(':o', $id, $this->db->PARAM_INT);
+		$this->db->bind(':s', $is, $this->db->PARAM_STR);
+		$this->db->bind(':t', time(), $this->db->PARAM_INT);
+		$this->db->bind(':lt', time(), $this->db->PARAM_INT);
+
+		$this->db->execute();
+
+		return [
+			'status' => 1
+		];
 	}
 }
 
