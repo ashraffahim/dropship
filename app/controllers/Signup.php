@@ -49,7 +49,7 @@ class Signup extends Controller {
 		// Load country list csv
 		$country = new Country();
 
-		$data['country'] = $country->customCountryList();
+		$data['country'] = $country->codeNameList();
 
 		$this->view('user/signup', $data, false);
 	}

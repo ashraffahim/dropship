@@ -23,7 +23,7 @@
 	<!-- App -->
 	<script src="/assets/js/script.js"></script>
 <body>
-	<main>
+	<main class="login-main">
 		<div class="container">
 			<div class="row justify-content-end align-items-center" style="height: 100vh">
 				<div class="col-lg-5 col-md-7 col-sm-9">

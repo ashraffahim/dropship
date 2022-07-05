@@ -23,7 +23,7 @@
 	<!-- App -->
 	<script src="/assets/js/script.js"></script>
 <body>
-	<main>
+	<main class="signup-main">
 		<div class="container">
 			<div class="row justify-content-end align-items-center" style="height: 100vh">
 				<div class="col-lg-5 col-md-7 col-sm-9">
@@ -72,6 +72,11 @@
 										<div class="form-group">
 											<select name="country" class="custom-select" placeholder="Country" required>
 												<option disabled selected>Select country</option>
+												<?php
+												foreach ($data['country'] as $c) {
+													echo '<option value="' . $c->code . '">' . $c->name . '</option>';
+												}
+												?>
 											</select>
 										</div>
 									</div>
@@ -150,11 +155,3 @@
 	</main>
 </body>
 </html>
-<script>
-	var country = '<?php echo $data['country']; ?>'.split(','),
-		ccan;
-	for (var i = 1; i < country.length; i++) {
-		ccan = country[i].split(':');
-		$('[name="country"]').append(`<option value="${ccan[0]}">${ccan[1]}</option>`);
-	}
-</script>
