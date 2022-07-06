@@ -3,6 +3,7 @@
 namespace controllers;
 
 use libraries\Controller;
+use models\_Webhook;
 
 class Webhook extends Controller {
 
@@ -13,8 +14,11 @@ class Webhook extends Controller {
 	}
 
 	public function stripe() {
+
+		require '../app/libraries/stripe-php/init.php';
+
 		// This is your Stripe CLI webhook secret for testing your endpoint locally.
-		$endpoint_secret = 'sk_test_51JGXp4IoGl18YWC8sqlP7TeCjGpezoYpn45HwDmSUWGmNLCeKG5EfdY2ZUYCQATLhovA4HuevEdSPH1Xp0yGhqFI00tEdFGqMx';
+		$endpoint_secret = 'whsec_66fbe7b4834241a1ec5e3faebcacb3f1b8e4e4d49f1474eef8b0c46fdc02c50f';
 
 		$payload = @file_get_contents('php://input');
 		$sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];
@@ -37,8 +41,9 @@ class Webhook extends Controller {
 		// Handle the event
 		switch ($event->type) {
 			case 'payment_intent.succeeded':
-				$paymentIntent = $event->data->object;
-				file_put_contents('a.json', $paymentIntent);
+				$ps = $this->w->confirmPayment($event->data->object->client_secret);
+				echo $ps;
+				// file_put_contents('a.json', $event->data->object);
 			default:
 				echo 'Received unknown event type ' . $event->type;
 		}

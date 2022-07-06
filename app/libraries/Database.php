@@ -28,10 +28,6 @@ class Database {
 		$this->connect();
 	}
 
-	public function __destruct() {
-		$this->pdo = null;
-	}
-
 	private function connect() {
 		$this->pdo = new PDO('mysql:host='.self::$host.';dbname='.self::$dbName.';charset=utf8', self::$username, self::$password);
 		$this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
