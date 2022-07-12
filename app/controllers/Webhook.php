@@ -44,8 +44,6 @@ class Webhook extends Controller {
 				$ps = $this->w->confirmPayment($event->data->object->client_secret);
 				echo $ps;
 				// file_put_contents('a.json', $event->data->object);
-			default:
-				echo 'Received unknown event type ' . $event->type;
 		}
 
 		http_response_code(200);

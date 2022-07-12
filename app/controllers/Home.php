@@ -16,8 +16,8 @@ class Home extends Controller {
 	public function index()	{
 		$f = $this->h->feed();
 		$this->view('home'.DS.'feed', [
-			'title' => '',
-			'description' => '',
+			'title' => 'Shop Everything Online | Grap',
+			'description' => 'Online store for electrical, sanitary, plumbing and AC maintenance',
 			'canonical' => DOMAIN,
 			'meta' => '',
 			'schema' => '',

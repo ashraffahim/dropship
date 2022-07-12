@@ -16,8 +16,10 @@ class Search extends Controller {
 
 	public function index($q = false)	{
 		$q = $q ? $q : $this->get('q');
+		$pmn = $this->get('pmin', '');
+		$pmx = $this->get('pmax', '');
+		$cn = $this->get('country', '');
 		$r = $this->h->search($q);
-		$c = new _Country();
 		if (!$r) {
 			$this->error('npf');
 			return;
@@ -29,7 +31,10 @@ class Search extends Controller {
 			'meta' => '<meta name="robots" content="noindex">',
 			'schema' => '',
 			'data' => $r,
-			'curr' => $c->list()
+			'q' => $q,
+			'pmn' => $pmn,
+			'pmx' => $pmx,
+			'cn' => $cn
 		]);
 	}
 }

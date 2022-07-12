@@ -3,7 +3,6 @@
 namespace controllers;
 
 use libraries\Controller;
-use controllers\Country;
 use models\_Product;
 
 class Product extends Controller {
@@ -22,8 +21,6 @@ class Product extends Controller {
 			return;
 		}
 		
-		$c = new Country();
-		$curr = $c->currSymbolList();
 		$fs = str_replace(DATADIR.DS.'product'.DS.$pd->id.DS, DATA.'/product/'.$pd->id.'/', glob(DATADIR.DS.'product'.DS.$pd->id.DS.'*'));
 
 		$this->view('product' . DS . 'detail', [
@@ -49,13 +46,13 @@ class Product extends Controller {
 				
 				).'
 				"offer": {
-					"priceCurrency": "' . $curr[$pd->s_currency] . '",
+					"priceCurrency": "' . $pd->s_currency . '",
 					"price": "' . $pd->p_price . '",
 					"url": "' . DOMAIN . '/' . $h . '"
 				}
 			}',
 			'data' => $pd,
-			'curr' => $curr[$pd->s_currency],
+			'curr' => $pd->s_currency,
 			'fs' => $fs
 		]);
 	}

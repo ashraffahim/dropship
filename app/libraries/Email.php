@@ -43,9 +43,9 @@ EOF;
 			$mail->Password = $from['password'];
 			$mail->setFrom($from['username'], $from['name']);
 		} else {
-			$mail->Username = 'verification@alghaim.com';
-			$mail->Password = 'Alghaim2022';
-			$mail->setFrom('verification@alghaim.com', 'Verification');
+			$mail->Username = 'no-reply@grap.store';
+			$mail->Password = 'Grap2022';
+			$mail->setFrom('no-reply@grap.store', 'Grap Store No Reply');
 		}
 	
 		if (is_array($to)) {

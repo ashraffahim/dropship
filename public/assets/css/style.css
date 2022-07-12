@@ -14,15 +14,15 @@ Custom css
 }
 
 @font-face {
-	font-family: "Raleway";
+	font-family: "Rubik";
 	font-weight: normal;
-	src: url(../font/Raleway/Raleway-VariableFont_wght.ttf);
+	src: url(../font/Rubik/Rubik.ttf);
 }
 
 :root {
 	--c60: 255 255 255;
 	--c30: 0 0 0;
-	--c10: 50 205 50;
+	--c10: 31 70 144;
 	--c60i: 0 0 0;
 	--c30i: 255 255 255;
 	--c10i: 255 255 255;
@@ -32,7 +32,7 @@ Custom css
 	--danger: 245 67 148;
 	--font-1: "Poppins Extra Bold";
 	--font-2: "Poppins Regular";
-	--font-3: "Raleway";
+	--font-3: "Rubik";
 	--outline-shadow: 0 0 0 1px rgb(var(--c30));
 	--hover-shadow: 0 0 20px -5px rgb(var(--c30) / .3);
 
@@ -181,23 +181,24 @@ tr:hover .hta {
 	text-decoration: none;
 }
 
-.feed .card {
+.feed-items .card {
 	background-color: rgb(var(--c60));
+	border: 0;
 	border-radius: .25rem;
 	margin-bottom: 1rem;
 	overflow: hidden;
 	transition: .1s ease-in box-shadow;
 }
 
-.feed .card:hover {
+.feed-items .card:hover {
 	box-shadow: 0 0 0 4px rgb(var(--c60)), 0 0 0 6px rgb(var(--c30));
 }
 
-.feed .card-thumb {
+.feed-items .card-thumb {
 	height: 200px;
 }
 
-.feed .card-thumb img {
+.feed-items .card-thumb img {
 	position: relative;
 	top: 50%;
 	left: 50%;
@@ -206,12 +207,17 @@ tr:hover .hta {
 	transform: translate(-50%, -50%);
 }
 
-.feed .card-body {
+.feed-items .card-body {
 	height: 100px;
 }
 
-nav {
+nav.navbar {
 	z-index: 999;
+	padding: .5rem 0;
+}
+
+.navbar > .container-fluid {
+	display: block;
 }
 
 .head-search {

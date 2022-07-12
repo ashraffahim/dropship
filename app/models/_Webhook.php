@@ -45,7 +45,7 @@ class _Webhook {
 						' . time() . '
 					)
 			');
-			$this->db->bind(':cs', $cs);
+			$this->db->bind(':cs', $cs, $this->db->PARAM_STR);
 			
 			$this->db->execute();
 			return 'Payment intent not captured';
@@ -56,10 +56,10 @@ class _Webhook {
 			UPDATE 
 				`payment` 
 			SET 
-				`p_status` = 1 
+				`p_status` = 1, 
 				`p_latimestamp` = ' . time() . ' 
 			WHERE 
-				`id` = ' . $p->id . '
+				`p_order` = ' . $p->id . '
 		');
 		
 		$this->db->execute();

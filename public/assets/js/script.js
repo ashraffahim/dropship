@@ -1,4 +1,8 @@
-function allowAddToCart() {
+$(function() {
+	cartItemCount();
+});
+
+function allowAddToCart(elem, callback) {
 	var n, p, q, id;
 	n = $('.product-details ._pn').text().replaceAll('\n', '').replaceAll('\t', '');
 	p = $('.product-details ._pp').text().replaceAll('\n', '').replaceAll('\t', '');
@@ -10,9 +14,12 @@ function allowAddToCart() {
 		q: q
 	};
 
-	$('.add-to-cart').on('click', function() {
+	$(elem).on('click', function() {
 		id = $(this).data('id');
 		addToCart(id, JSON.stringify(data));
+		if (typeof callback === 'function') {
+			callback();
+		}
 	});
 }
 
@@ -23,13 +30,18 @@ function cartItemCount() {
 			n++;
 		}
 	}
-	return n;
+	if (n > 0) {
+		$('.cart-btn span').text(n).show();
+	} else {
+		$('.cart-btn span').hide();
+	}
 }
 
 
 function addToCart(id, data) {
 	if (localStorage.getItem('ci' + id) == null) {
 		localStorage.setItem('ci' + id, data);
+		cartItemCount();
 	}
 }
 
@@ -44,6 +56,7 @@ function setQtyToCart(id, q) {
 
 function removeFromCart(id) {
 	localStorage.removeItem('ci' + id);
+	cartItemCount();
 }
 
 function getCartIds() {

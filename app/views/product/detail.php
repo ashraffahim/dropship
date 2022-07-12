@@ -53,11 +53,11 @@
 								</div>
 								<div class="col-lg-7">
 									<div class="row h-100 align-items-center">
-										<div class="col-4">
-											<button type="button" class="btn btn-outline-secondary btn-block add-to-save" data-id="<?php echo $data['data']->id; ?>">Save</button>
+										<div class="col-6">
+											<button type="button" class="btn btn-outline-secondary btn-block add-to-cart" data-id="<?php echo $data['data']->id; ?>">Add to Cart</button>
 										</div>
-										<div class="col-8">
-											<button type="button" class="btn btn-theme btn-block add-to-cart" data-id="<?php echo $data['data']->id; ?>">Add to Cart</button>
+										<div class="col-6">
+											<button type="button" class="btn btn-theme btn-block buy" data-id="<?php echo $data['data']->id; ?>">Buy</button>
 										</div>
 									</div>
 								</div>
@@ -97,4 +97,4 @@
 		</div>
 	</div>
 </div>
-<script>crsl();allowAddToCart();</script>
+<script>crsl();allowAddToCart('.add-to-cart');allowAddToCart('.buy', () => {location.href = '/cart';});</script>

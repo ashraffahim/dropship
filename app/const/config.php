@@ -7,7 +7,7 @@ date_default_timezone_set('UTC');
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', '646862');
-define('DB_NAME', 'dropship_db');
+define('DB_NAME', 'grap_db');
 
 // Software
 define('DS', DIRECTORY_SEPARATOR);
@@ -15,7 +15,7 @@ define('DOMAIN', 'http://menu');
 define('BASEDIR', '');
 define('DATA', 'http://dropship-ftp');
 define('DATADIR', '..'.DS.'..'.DS.'dropship-seller'.DS.'data');
-define('LOGO', 'http://dropship/assets/img/agit-logo-c.png');
+define('LOGO', 'http://dropship/assets/img/grap-logo.png');
 define('SITENAME', '');
 define('APP_VERSION', '1.0.0');
 
