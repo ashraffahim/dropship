@@ -63,6 +63,7 @@ class _Webhook {
 		');
 		
 		$this->db->execute();
+
 		return $p->id;
 	}
 
