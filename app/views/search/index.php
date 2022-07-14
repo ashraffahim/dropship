@@ -35,12 +35,12 @@
 						</div>
 						<div class="form-group">
 							<label for="country_bd" class="d-flex align-items-center">
-								<input type="checkbox" id="country_bd" name="country" value="BD" class="mr-1"> Bangladesh
+								<input type="radio" id="country_bd" name="country" value="BD" class="mr-1"> Bangladesh
 							</label>
 						</div>
 						<div class="form-group">
 							<label for="country_ae" class="d-flex align-items-center">
-								<input type="checkbox" id="country_ae" name="country" value="AE" class="mr-1"> United Arab Emirates
+								<input type="radio" id="country_ae" name="country" value="AE" class="mr-1"> United Arab Emirates
 							</label>
 						</div>
 					</div>
@@ -58,6 +58,16 @@
 		<!-- End Filter form -->
 
 		<div class="col-md-10">
+			<?php
+			if (!$data['data']) {
+			?>
+			<div class="text-center">
+				<img src="/assets/img/no-data.png" alt="No Data" height="400">
+				<div><span class="text-primary lead">I see you're only interested in the exceptionally rare!</span></div>
+			</div>
+			<?php
+			}
+			?>
 			<div class="row feed-items">
 				<?php
 				foreach ($data['data'] as $i => $p) {

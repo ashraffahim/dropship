@@ -181,6 +181,15 @@ tr:hover .hta {
 	text-decoration: none;
 }
 
+.feed .feed-banner {
+	background-image: linear-gradient(45deg, orange, firebrick);
+}
+
+.feed .feed-banner-body {
+	padding: 1rem 1.5rem;
+	color: #fff;
+}
+
 .feed-items .card {
 	background-color: rgb(var(--c60));
 	border: 0;

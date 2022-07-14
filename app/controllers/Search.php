@@ -15,15 +15,14 @@ class Search extends Controller {
 	}
 
 	public function index($q = false)	{
+		$this->sanitizeInputGet();
 		$q = $q ? $q : $this->get('q');
 		$pmn = $this->get('pmin', '');
 		$pmx = $this->get('pmax', '');
 		$cn = $this->get('country', '');
-		$r = $this->h->search($q);
-		if (!$r) {
-			$this->error('npf');
-			return;
-		}
+		$p = $this->get('page', '');
+		$r = $this->h->search($q, $pmn, $pmx, $cn, $p);
+		
 		$this->view('search'.DS.'index', [
 			'title' => '',
 			'description' => '',

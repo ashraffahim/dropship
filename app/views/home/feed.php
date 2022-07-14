@@ -9,16 +9,16 @@
 
 		<!-- Start Feed -->
 
-		<div class="col-md-10">
+		<div class="col-md-12">
 			
 			<!-- Start Banner -->
 			
 			<div class="row mb-5">
 				<div class="col-12">
-					<div class="card bg-dark">
-						<div class="card-body text-light">
-							<h1>Big Banner</h1>
-							<h6>Get 50%* off</h6>
+					<div class="feed-banner">
+						<div class="feed-banner-body">
+							<h1>Lowest Price</h1>
+							<h6>For the same quality</h6>
 						</div>
 					</div>
 				</div>
@@ -26,11 +26,6 @@
 
 			<!-- End Banner -->
 
-			<div class="row mb-3">
-				<div class="col-12">
-					<h3>Category</h3>
-				</div>
-			</div>
 			<div class="row feed-items">
 				<?php
 				foreach ($data['data'] as $i => $p) {

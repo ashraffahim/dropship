@@ -8,6 +8,7 @@ define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', '646862');
 define('DB_NAME', 'grap_db');
+define('ROW_LIMIT', 20);
 
 // Software
 define('DS', DIRECTORY_SEPARATOR);
