@@ -4,9 +4,53 @@ namespace libraries;
 
 class Controller {
 
-	public function dispense($data = []) {
-		header('Content-type: text/json');
-		echo json_encode($data);
+	public function view($view, $data = [], $wrap = true) {
+
+		if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
+			$wrap = false;
+		}
+
+		if (file_exists('../app/views/' . $view . '.php')) {
+			
+			if ($wrap) {
+			
+				include '../app/views/inc/header.php';
+				require_once '../app/views/' . $view . '.php';
+				include '../app/views/inc/footer.php';
+			
+			} else {
+			
+				require_once '../app/views/' . $view . '.php';
+			
+			}
+
+		} else {
+
+			if ($view != '') {
+				header('Location: ' . BASEDIR);
+			}
+
+		}
+
+	}
+
+	public function error($err) {
+		$this->view('error/' . $err, [
+			'title' => '',
+			'description' => '',
+			'canonical' => '',
+			'meta' => '<meta name="robots" content="noindex">',
+			'schema' => ''
+		]);
+	}
+
+	public function status($data = [], $ajax = false) {
+
+		if ((isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') || $ajax) {
+			require_once '../app/views/api/json.php';
+			exit;
+		}
+
 	}
 
 	public function RMisPost() {
@@ -30,4 +74,5 @@ class Controller {
 	}
 
 }
+
 ?>
