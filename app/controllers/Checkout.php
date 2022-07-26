@@ -133,7 +133,7 @@ class Checkout extends Controller {
 		require '../app/libraries/stripe-php/init.php';
 
 		// This is your test secret API key.
-		\Stripe\Stripe::setApiKey('sk_test_51JGXp4IoGl18YWC8sqlP7TeCjGpezoYpn45HwDmSUWGmNLCeKG5EfdY2ZUYCQATLhovA4HuevEdSPH1Xp0yGhqFI00tEdFGqMx');
+		\Stripe\Stripe::setApiKey(STRIPE_API_KEY);
 		
 		header('Content-Type: application/json');
 		
