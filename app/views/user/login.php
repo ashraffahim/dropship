@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<title>Signup | Dropship</title>
+	<title>Login | Dropship</title>
 	<meta name="description" content="Signup as buyer to purchase products">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<!-- style -->

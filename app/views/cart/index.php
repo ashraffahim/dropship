@@ -73,9 +73,9 @@
 							<div class="col-12 mb-1">
 								<a href="/checkout/pay/stripe/{id}" class="btn btn-dark btn-block">Credit / Debit Card</a>
 							</div>
-							<div class="col-12 mb-1">
+							<!-- <div class="col-12 mb-1">
 								<a href="/checkout/pay/bkash/{id}" class="btn bg-bKash btn-block"><img src="/assets/img/bKash-logo.png"> bKash</a>
-							</div>
+							</div> -->
 							<div class="col-12">
 								<button type="button" class="btn btn-light btn-block cancel-checkout">Cancel</button>
 							</div>

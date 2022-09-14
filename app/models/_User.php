@@ -25,7 +25,7 @@ class _User {
 				'cardTag' => [
 					'type' => 'warning',
 					'icon' => 'exclamation-triangle',
-					'body' => '<b>Email already registered!</b> Try <a href="/login">Log in</a>'
+					'body' => '<b>User already exists!</b>'
 				]
 			];
 		}

@@ -22,6 +22,7 @@
 	<script src="/libs/popper.js/dist/umd/popper.min.js"></script>
 	<script src="/libs/bootstrap/dist/js/bootstrap.min.js"></script>
 	<!-- App -->
+	<script src="/assets/js/config.js"></script>
 	<script src="/assets/js/script.js"></script>
 <body>
 	<main>

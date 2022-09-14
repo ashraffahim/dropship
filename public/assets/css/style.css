@@ -244,6 +244,12 @@ nav.navbar {
 	background-position: 0 0, 10% center;
 }
 
+.login-main {
+	background-image: url(../img/login-blob.jpg);
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
 .product-details .crsl {
 	position: relative;
 	height: 300px;
